@@ -12,7 +12,6 @@ const Congrats = ({ success }) => {
       ) : (
         <div data-test="component-congrats" />
       )}
-      ;
     </>
   );
 };

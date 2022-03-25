@@ -8,22 +8,21 @@ const GuessedWords = (props) => {
     );
   } else {
     const guessedWordsRows = props.guessedWords.map((word, i) => (
-      <tr data-test="guessed-word" key={i}>
+      <tr
+        data-test="guessed-word"
+        key={i}
+        className="font-bold flex justify-between tracking-wider">
         <td>{word.guessedWord}</td>
         <td>{word.letterMatchCount}</td>
       </tr>
     ));
     contents = (
-      <div data-test="guessed-words">
-        <h3>Guessed Words</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Guess</th>
-              <th>Matching Letters</th>
-            </tr>
-          </thead>
-          <tbody>{guessedWordsRows}</tbody>
+      <div
+        data-test="guessed-words"
+        className="bg-glass rounded-md drop-shadow-xl p-2">
+        <table className="w-full block">
+          <thead></thead>
+          <tbody className="flex flex-col gap-2">{guessedWordsRows}</tbody>
         </table>
       </div>
     );
