@@ -11,7 +11,7 @@ const GuessedWords = (props) => {
       <tr
         data-test="guessed-word"
         key={i}
-        className="font-bold flex justify-between tracking-wider">
+        className="flex justify-between tracking-wider">
         <td>{word.guessedWord}</td>
         <td>{word.letterMatchCount}</td>
       </tr>

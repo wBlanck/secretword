@@ -4,6 +4,7 @@ module.exports = {
     extend: {
       fontFamily: {
         heading: ["Kalam", "cursive"],
+        text: ["Roboto Condensed", "sans-serif"],
       },
       colors: {
         glass: "rgba(255, 255, 255, 0.25)",
