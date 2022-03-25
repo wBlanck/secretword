@@ -4,7 +4,7 @@ import GuessedWords from "./components/GuessedWords";
 
 function App() {
   return (
-    <div className="grid content-center justify-center h-screen w-screen text-center gradient-bg text-gray-100 font-text">
+    <div className="grid content-center justify-center h-screen w-screen text-center gradient-bg text-gray-100 font-text ">
       <h1 className="text-4xl font-heading">
         <span className="text-6xl drop-shadow-xl ">Guess</span>
         <br /> The Secret Word!

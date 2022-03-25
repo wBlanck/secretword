@@ -1,11 +1,17 @@
-:root {
-  --gradient: linear-gradient(
-    79.84deg,
-    rgba(252, 53, 76, 0.8) 2.57%,
-    rgba(10, 191, 188, 0.8) 95.98%
-  );
+.gradient-bg {
+  background: linear-gradient(50deg, #0abfbcd3, #fc354cd3, #a4325ad3);
+  animation: gradient-animation 20s ease-in infinite alternate-reverse both;
+  background-size: 500% 500% !important;
 }
 
-.gradient-bg {
-  background: var(--gradient);
+@keyframes gradient-animation {
+  0% {
+    background-position: right top;
+  }
+  50% {
+    background-position: left bottom;
+  }
+  100% {
+    background-position: right top;
+  }
 }
