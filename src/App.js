@@ -1,15 +1,17 @@
 import "./App.css";
 import Congrats from "./components/Congrats";
 import GuessedWords from "./components/GuessedWords";
+import Input from "./components/Input";
 
 function App() {
   return (
-    <div className="grid content-center justify-center h-screen w-screen text-center gradient-bg text-gray-100 font-text ">
+    <div className="grid content-center justify-center w-screen h-screen gap-3 text-center text-gray-100 gradient-bg font-text">
       <h1 className="text-4xl font-heading">
         <span className="text-6xl drop-shadow-xl ">Guess</span>
         <br /> The Secret Word!
       </h1>
       <Congrats success={true} />
+      <Input secretWord="beer" />
       <GuessedWords
         guessedWords={[
           { guessedWord: "MoneyBucks", letterMatchCount: 0 },

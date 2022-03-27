@@ -3,6 +3,14 @@ import { shallow } from "enzyme";
 import { checkProps, findByTestAttr } from "../../test/testUtils";
 import Input from "./Input";
 
+// to be able to destructure
+const mockSetCurrentGuess = jest.fn();
+
+jest.mock("react", () => ({
+  ...jest.requireActual("react"),
+  useState: (initialState) => [initialState, mockSetCurrentGuess],
+}));
+
 const defaultProps = {
   secretWord: "bonkers",
 };
@@ -24,16 +32,25 @@ test("does not throw warning with expected props", () => {
 });
 
 describe("state controlled input field", () => {
-  test("state updates with value of input box upon change", () => {
-    const mockSetCurrentGuess = jest.fn();
-    React.useState = jest.fn(() => ["", mockSetCurrentGuess]);
+  let wrapper;
+  beforeEach(() => {
+    wrapper = setup();
+  });
 
-    const wrapper = setup(defaultProps);
+  test("state updates with value of input box upon change", () => {
     const inputBox = findByTestAttr(wrapper, "input-box");
 
     const mockEvent = { target: { value: "train" } };
     inputBox.simulate("change", mockEvent);
 
     expect(mockSetCurrentGuess).toHaveBeenCalledWith("train");
+  });
+
+  test("field is cleared upon submit button click", () => {
+    const submitButton = findByTestAttr(wrapper, "guess-button");
+
+    submitButton.simulate("click");
+
+    expect(mockSetCurrentGuess).toHaveBeenCalledWith("");
   });
 });
