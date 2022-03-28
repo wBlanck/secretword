@@ -1,13 +1,13 @@
 import PropTypes from "prop-types";
 
-const GuessedWords = (props) => {
+const GuessedWords = ({ guessedWords }) => {
   let contents;
-  if (props.guessedWords.length === 0) {
+  if (guessedWords.length === 0) {
     contents = (
       <span data-test="guess-instructions">Try to guess the secret word!</span>
     );
   } else {
-    const guessedWordsRows = props.guessedWords.map((word, i) => (
+    const guessedWordsRows = guessedWords.map((word, i) => (
       <tr
         data-test="guessed-word"
         key={i}
@@ -19,8 +19,8 @@ const GuessedWords = (props) => {
     contents = (
       <div
         data-test="guessed-words"
-        className="bg-glass rounded-md drop-shadow-xl p-2">
-        <table className="w-full block">
+        className="p-2 rounded-md bg-glass drop-shadow-xl">
+        <table className="block w-full">
           <thead></thead>
           <tbody className="flex flex-col gap-2">{guessedWordsRows}</tbody>
         </table>

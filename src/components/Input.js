@@ -1,14 +1,52 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import AppContext from "./context/AppContext";
 
 const Input = ({ secretWord }) => {
+  const { dispatch } = useContext(AppContext);
+
   const [currentGuess, setCurrentGuess] = useState("");
 
-  /*   const handleSubmit = (e) => {
+  // ["b","e","e","r"]
+  // ["w","e","l","l"]
+
+  const checkLettersMatched = () => {
+    let secretW = [...secretWord];
+    let correctLetters = [];
+
+    currentGuess.split("").map((letter) => {
+      console.log("current Letter: ", letter);
+      secretW.filter((secretLetter) => {
+        if (letter === secretLetter) {
+          console.log("secretW at start of loop: ", secretW);
+          const indexOf = secretW.indexOf(letter);
+          console.log(secretW.indexOf(letter));
+
+          console.log("after splice: ", secretW);
+          correctLetters.push(letter);
+        }
+      });
+    });
+    console.log("matched: ", correctLetters);
+    return correctLetters.length;
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
+    //check if correct word
+    if (currentGuess === secretWord) {
+      dispatch({ type: "WINNER", payload: true });
+    }
+    //check how many letters are correct
+    console.log("length: ", checkLettersMatched());
+
+    dispatch({
+      type: "ADD_GUESS",
+      payload: { guessedWord: "file", letterMatchCount: 2 },
+    });
+
     setCurrentGuess("");
-    console.log(currentGuess);
-  }; */
+  };
 
   return (
     <div data-test="component-input">
@@ -24,9 +62,7 @@ const Input = ({ secretWord }) => {
         <button
           data-test="guess-button"
           className="bg-[#FC354C] rounded-md  font-text py-1 px-2 font-bold tracking-wide self-center"
-          onClick={() => {
-            setCurrentGuess("");
-          }}>
+          onClick={handleSubmit}>
           Guess
         </button>
       </form>
