@@ -19,7 +19,7 @@ const Input = ({ secretWord }) => {
           value={currentGuess}
           onChange={(e) => setCurrentGuess(e.target.value)}
           type="text"
-          className="font-semibold bg-[#03FFFB] rounded-md font-text py-1 px-2 placeholder:text-gray-200"
+          className="px-2 py-1 font-semibold rounded-md bg-coloredGlass font-text placeholder:text-gray-200"
         />
         <button
           data-test="guess-button"

@@ -8,6 +8,7 @@ module.exports = {
       },
       colors: {
         glass: "rgba(255, 255, 255, 0.25)",
+        coloredGlass: "rgba(3, 255, 251, 0.56)",
       },
     },
   },
