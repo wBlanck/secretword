@@ -6,7 +6,7 @@ const AppContext = createContext();
 export const AppProvider = ({ children }) => {
   const initialState = {
     secretWord: "",
-    guessedWords: [{ guessedWord: "beer", letterMatchCount: 5 }],
+    guessedWords: [],
     success: false,
   };
 

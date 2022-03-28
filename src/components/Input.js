@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useContext, useState } from "react";
+import { checkMatchingLetters } from "./context/AppActions";
 import AppContext from "./context/AppContext";
 
 const Input = ({ secretWord }) => {
@@ -7,42 +8,20 @@ const Input = ({ secretWord }) => {
 
   const [currentGuess, setCurrentGuess] = useState("");
 
-  // ["b","e","e","r"]
-  // ["w","e","l","l"]
-
-  const checkLettersMatched = () => {
-    let secretW = [...secretWord];
-    let correctLetters = [];
-
-    currentGuess.split("").map((letter) => {
-      console.log("current Letter: ", letter);
-      secretW.filter((secretLetter) => {
-        if (letter === secretLetter) {
-          console.log("secretW at start of loop: ", secretW);
-          const indexOf = secretW.indexOf(letter);
-          console.log(secretW.indexOf(letter));
-
-          console.log("after splice: ", secretW);
-          correctLetters.push(letter);
-        }
-      });
-    });
-    console.log("matched: ", correctLetters);
-    return correctLetters.length;
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
+
     //check if correct word
     if (currentGuess === secretWord) {
       dispatch({ type: "WINNER", payload: true });
     }
-    //check how many letters are correct
-    console.log("length: ", checkLettersMatched());
 
     dispatch({
       type: "ADD_GUESS",
-      payload: { guessedWord: "file", letterMatchCount: 2 },
+      payload: {
+        guessedWord: currentGuess,
+        letterMatchCount: checkMatchingLetters(secretWord, currentGuess),
+      },
     });
 
     setCurrentGuess("");
